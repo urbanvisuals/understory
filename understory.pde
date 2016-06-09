@@ -1,28 +1,3 @@
-import codeanticode.syphon.*;
-
-class Syphon {
- 
-  SyphonServer server;
- 
-  PApplet p;
- 
-  Syphon(PApplet p, String name){
-    this.p = p;
-    server = new SyphonServer(p, name);
-  }
- 
-  void send(){
-     send(p.g);
-  }
- 
-  void send(PGraphics g){
-     server.sendImage(g);
-  }  
- 
-}
-
-Syphon syphon;
-
 import oscP5.*;
 import netP5.*;
 
@@ -59,7 +34,6 @@ FBox remover;
 FBox catcher;
 
 
-SyphonServer server;
 
 import processing.video.*;
 
@@ -136,9 +110,7 @@ void draw() {
    }
    
    
-   //Syphon Send
-  //syphon.send(); 
-
+ 
   hint(DISABLE_DEPTH_TEST);
   resetShader();
   noStroke();
@@ -178,8 +150,6 @@ void setup(){
    
   font = loadFont("UniversLT.vlw");
 
-  //Syphon
-  syphon = new Syphon(this, "Understory App"); 
   
   wayHome = loadImage("logo-color.png");
   
