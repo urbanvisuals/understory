@@ -47,9 +47,9 @@ Scene tempScene;
 
 
 
-boolean sketchFullScreen() {
-  return true;
-}
+//boolean sketchFullScreen() {
+//  return true;
+//}
 
 
 HashMap<String, Scene> sceneMap = new HashMap<String, Scene>();
@@ -340,12 +340,10 @@ void contactStarted(FContact contact) {
   
 }
 
-public void init() {
-  //frame.removeNotify();
-  //frame.setUndecorated(true); // works.
+//public void init() {
+// //frame.removeNotify();
+// //frame.setUndecorated(true); // works.
   
-  // call PApplet.init() to take care of business
-  super.init();
-} 
-
-
+// // call PApplet.init() to take care of business
+// super.init();
+//} 
