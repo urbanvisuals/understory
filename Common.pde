@@ -127,4 +127,3 @@ void changeScene(Scene s) {
   println(tempScene.description);
   BlackFader = 50;
 }
-

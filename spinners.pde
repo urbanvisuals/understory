@@ -120,4 +120,3 @@ Scene spinners = new Scene("spinners", "Spinners") {
   void setup() {spinners_setup();}
   void draw() {spinners_draw();}
 };
-

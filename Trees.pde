@@ -311,4 +311,3 @@ Scene treePattern8 = new Scene("tree8", "Tree Pattern 8") {
     TreePattern8_draw();
   }
 };
-

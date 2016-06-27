@@ -169,4 +169,3 @@ Scene conway = new Scene("conway", "9: Conway's game o life") {
     conway_draw();
   }
 };
-

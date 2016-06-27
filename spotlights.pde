@@ -81,4 +81,3 @@ Scene spotlights = new Scene("spotlights", "Spotlights") {
     spotlights_draw();
   }
 };
-

@@ -470,6 +470,3 @@ Scene XVoronoi = new Scene("xvoronoi", "XVoronoi") {
     //println(world.getBodies());
   }
 };
-
-
-

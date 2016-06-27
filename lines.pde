@@ -96,4 +96,3 @@ Scene lines = new Scene("lines", "Lines") {
   void setup() {lines_setup();}
   void draw() {lines_draw();}
 };
-

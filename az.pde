@@ -1837,4 +1837,3 @@ Scene YScene = new Scene("y", "y: vines") {
     y_draw();
   }
 };
-

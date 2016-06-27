@@ -116,4 +116,3 @@ Scene vorenoi = new Scene("voronoi", "Voronoi") { // [sic], it's Voronoi.
   void setup() {Vorenoi_setup();}
   void draw() {Vorenoi_draw();}
 };
-

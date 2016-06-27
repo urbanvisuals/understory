@@ -7,61 +7,71 @@ void movieEvent(Movie m) {
 
 
 void movie1_setup() {
-  myMovie = new Movie(this, "motion.mov");
+  //myMovie = new Movie(this, "motion.mov");
+  myMovie = new Movie(this, "IMG_3368.m4v");
   myMovie.play();
   myMovie.loop();
 }
 
 void movie2_setup() {
-  myMovie = new Movie(this, "ground.mov");
+  //myMovie = new Movie(this, "ground.mov");
+  myMovie = new Movie(this, "IMG_3368.m4v");
   myMovie.play();
   myMovie.loop();
 }
 
 void movie3_setup() {
-  myMovie = new Movie(this, "explosion.mov");
+  //myMovie = new Movie(this, "explosion.mov");
+  myMovie = new Movie(this, "IMG_3368.m4v");
   myMovie.play();
   myMovie.loop();
 }
 
 void movie4_setup() {
-  myMovie = new Movie(this, "WH-1_Circles.mp4");
+  //myMovie = new Movie(this, "WH-1_Circles.mp4");
+  myMovie = new Movie(this, "IMG_3368.m4v");
   myMovie.play();
   myMovie.loop();
 }
 
 void movie5_setup() {
-  myMovie = new Movie(this, "WH-3_SlashDots.mp4");
+  //myMovie = new Movie(this, "WH-3_SlashDots.mp4");
+  myMovie = new Movie(this, "IMG_3368.m4v");
   myMovie.play();
   myMovie.loop();
 }
 
 void movie6_setup() {
-  myMovie = new Movie(this, "WH-4_Whitestripes-1.mp4");
+  //myMovie = new Movie(this, "WH-4_Whitestripes-1.mp4");
+  myMovie = new Movie(this, "IMG_3368.m4v");
   myMovie.play();
   myMovie.loop();
 }
 
 void movie7_setup() {
-  myMovie = new Movie(this, "WH-6_PatternB.mp4");
+  //myMovie = new Movie(this, "WH-6_PatternB.mp4");
+  myMovie = new Movie(this, "IMG_3368.m4v");
   myMovie.play();
   myMovie.loop();
 }
 
 void movie8_setup() {
-  myMovie = new Movie(this, "WH-7A_ZigZags_TOP.mp4");
+  //myMovie = new Movie(this, "WH-7A_ZigZags_TOP.mp4");
+  myMovie = new Movie(this, "IMG_3368.m4v");
   myMovie.play();
   myMovie.loop();
 }
 
 void movie9_setup() {
-  myMovie = new Movie(this, "WH-7B_ZigZags_BOT.mp4");
+  //myMovie = new Movie(this, "WH-7B_ZigZags_BOT.mp4");
+  myMovie = new Movie(this, "IMG_3368.m4v");
   myMovie.play();
   myMovie.loop();
 }
 
 void movie10_setup() {
-  myMovie = new Movie(this, "WH-7C_ZigZags_ACTIVE.mp4");
+  //myMovie = new Movie(this, "WH-7C_ZigZags_ACTIVE.mp4");
+  myMovie = new Movie(this, "IMG_3368.m4v");
   myMovie.play();
   myMovie.loop();
 }
@@ -132,4 +142,3 @@ Scene movie10 = new Scene("movie10", "Movie 10: WH-7C_ZigZags_ACTIVE") {
   void setup() {movie10_setup();}
   void draw() {movie_draw();}
 };
-
