@@ -4,6 +4,8 @@ import netP5.*;
 PImage wayHome;
 boolean showWayHome;
 boolean masterPause = false;
+
+int defaultPresetIndex = 0;
   
 OscP5 oscP5;
 NetAddress myRemoteLocation;
@@ -51,7 +53,17 @@ void second_setup() {
     myMovie.stop();
   }
   if (scene != null) {
-    scene.loadPreset(1);
+    //scene.loadPreset(1);
+    //scene.loadPreset(0);
+    
+    if(autoload == 1.0){
+      //print("AUTOLOAD! ");
+      //println(autoload);
+      scene.loadPreset(defaultPresetIndex);
+    } else {
+      scene.loadPreset(1);
+    }
+    
     scene.setup();
   }
 
@@ -130,7 +142,7 @@ void setup(){
   // set x parameter depending on the resolution of your 1st screen
   //frame.setLocation(1660,50);
 
-  oscP5 = new OscP5(this,myListeningPort);
+  oscP5 = new OscP5(this, myListeningPort);
   //myRemoteLocation = new NetAddress("169.254.178.242",12006);
    
   font = loadFont("UniversLT.vlw");
@@ -260,7 +272,6 @@ void setup(){
   second_setup();
   
 }
-
 
 void contactStarted(FContact contact) {
   

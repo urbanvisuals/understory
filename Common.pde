@@ -12,10 +12,10 @@ final String presetFilename = "presets.csv";
 
 void keyPressed() {
   if (key == 's') {
-    scene.savePreset(0);
+    scene.savePreset(defaultPresetIndex);
   }
   if (key == '=') {
-    scene.loadPreset(0);  
+    scene.loadPreset(defaultPresetIndex);
   }
   if (key == ' ') {
     showWayHome = !showWayHome;
@@ -42,8 +42,6 @@ void keyPressed() {
   println(tempScene.description);
   BlackFader = 50;
 }
-
-
 
 abstract class Scene {
   String description;
@@ -103,6 +101,10 @@ abstract class Scene {
 
   // Loading the preset is done by the "=" key on the keyboard
   void loadPreset(int i) {
+    
+    print("what is the preset it is trying to load?");
+    println(presetId(i));
+    
     Table table;
     try {
       table = loadTable(presetFilename, "header");
