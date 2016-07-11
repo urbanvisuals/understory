@@ -141,6 +141,7 @@ void draw() {
 
 void setup(){
    size(2400, 600, OPENGL);
+   //size(1600, 900, OPENGL);
   // set location - needs to be in setup()
   // set x parameter depending on the resolution of your 1st screen
   //frame.setLocation(1660,50);
@@ -169,6 +170,8 @@ void setup(){
   //sceneMap.put("n", treePattern6);
   //sceneMap.put("m", treePattern7);
   sceneMap.put(",", treePattern8);
+  
+  sceneMap.put("s", clocks);
   
   sceneMap.put("a", AScene);
   sceneMap.put("d", DScene);
