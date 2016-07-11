@@ -14,6 +14,9 @@ void keyPressed() {
   if (key == 's') {
     scene.savePreset(0);
   }
+  if (key == '=') {
+    scene.loadPreset(0);  
+  }
   if (key == ' ') {
     showWayHome = !showWayHome;
   }
@@ -52,11 +55,18 @@ abstract class Scene {
     this.description = description;
   }
 
+  // Sets / creates the ID column in the presets csv.
   String presetId(int presetI) {
     return this.id + "-" + presetI;
   }
 
   void savePreset(int i) {
+    
+    // The preset ID is actually what comes after the "-".
+    // It looks like there were possibilities to save different versions / presets for each sketch.
+    // At the moment, multiple presetss for a sketch is not possible.
+    println("save preset id: " + i);
+
     Table table;
     try {
       table = loadTable(presetFilename, "header");
@@ -73,6 +83,11 @@ abstract class Scene {
       table.addColumn("fader6", Table.INT);
     }
     TableRow row = table.findRow(presetId(i), "id");
+
+    // Logging the column ID name for the preset
+    print("ID column name: ");
+    println(presetId(i));
+
     if (row == null) {
       row = table.addRow();
       row.setString("id", presetId(i));
@@ -86,6 +101,7 @@ abstract class Scene {
     saveTable(table, presetFilename);
   }
 
+  // Loading the preset is done by the "=" key on the keyboard
   void loadPreset(int i) {
     Table table;
     try {
@@ -106,7 +122,17 @@ abstract class Scene {
     fader4 = row.getInt("fader4");
     fader5 = row.getInt("fader5");
     fader6 = row.getInt("fader6");
+    
     // Notify of changed fader values
+    int[] faderArray = { fader1, fader2, fader3, fader4, fader5, fader6 };
+    
+    OscMessage myMessage;
+    for(int f = 1; f <= 6; f++){
+      String faderNum = "/fader"+ f;
+      myMessage = new OscMessage(faderNum);
+      myMessage.add(faderArray[f-1]);
+      oscP5.send(myMessage, myNetAddressList);
+    }
   }
 
   abstract void setup();
