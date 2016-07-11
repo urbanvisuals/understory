@@ -38,7 +38,7 @@
 
 //boolean savePDF = false;
 
-PShape currentShape;
+//PShape currentShape;
 
 int w = 2400;
 int h = 600;
