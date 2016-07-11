@@ -171,7 +171,7 @@ void setup(){
   //sceneMap.put("m", treePattern7);
   sceneMap.put(",", treePattern8);
   
-  sceneMap.put("s", clocks);
+  sceneMap.put("y", clocks);
   
   sceneMap.put("a", AScene);
   sceneMap.put("d", DScene);
@@ -200,6 +200,7 @@ void setup(){
   
   sceneMap.put("1", colorMoireShader);
 
+  // Sets the default scene to the junk rotating boxes
   scene = junk;
   
   OSCMap.put("/2/chooser/6/1", image2); 
