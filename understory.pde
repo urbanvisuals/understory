@@ -5,7 +5,8 @@ PImage wayHome;
 boolean showWayHome;
 boolean masterPause = false;
 
-int defaultPresetIndex = 0;
+//int defaultPresetIndex = 1;
+int currentPreset = 1;
   
 OscP5 oscP5;
 NetAddress myRemoteLocation;
@@ -52,6 +53,7 @@ void second_setup() {
   if (myMovie != null) {
     myMovie.stop();
   }
+  
   if (scene != null) {
     //scene.loadPreset(1);
     //scene.loadPreset(0);
@@ -59,7 +61,7 @@ void second_setup() {
     if(autoload == 1.0){
       //print("AUTOLOAD! ");
       //println(autoload);
-      scene.loadPreset(defaultPresetIndex);
+      scene.loadPreset(currentPreset);
     } else {
       scene.loadPreset(1);
     }

@@ -1,4 +1,4 @@
-int oscX, oscY, fader1=10, fader2=10, fader3=10, fader4=10, fader5=10, fader6=10;
+int oscX, oscY, fader1=10, fader2=10, fader3=10, fader4=10, fader5=10, fader6=10, red1=0, green1=0, blue1=0, red2=0, green2=0, blue2=0;
 int maskFader = 0, maskWipe = 0;
 float normX, normY;
 
@@ -64,9 +64,34 @@ void oscEvent(OscMessage theOscMessage) {
   if (theOscMessage.checkAddrPattern("/maskfader")) {
     maskFader = int(theOscMessage.get(0).floatValue());
   }
-
+  
   if (theOscMessage.checkAddrPattern("/maskwipe")) {
     maskWipe = int(theOscMessage.get(0).floatValue());
+  }
+  
+  // RGB Faders
+  if (theOscMessage.checkAddrPattern("/1/red1")) {
+    red1 = int(theOscMessage.get(0).floatValue());
+  }
+  
+  if (theOscMessage.checkAddrPattern("/1/green1")) {
+    green1 = int(theOscMessage.get(0).floatValue());
+  }
+  
+  if (theOscMessage.checkAddrPattern("/1/blue1")) {
+    blue1 = int(theOscMessage.get(0).floatValue());
+  }
+  
+  if (theOscMessage.checkAddrPattern("/1/red2")) {
+    red2 = int(theOscMessage.get(0).floatValue());
+  }
+  
+  if (theOscMessage.checkAddrPattern("/1/green2")) {
+    green2 = int(theOscMessage.get(0).floatValue());
+  }
+  
+  if (theOscMessage.checkAddrPattern("/1/blue2")) {
+    blue2 = int(theOscMessage.get(0).floatValue());
   }
   
   // NOTE: SAVING notes 
@@ -76,15 +101,19 @@ void oscEvent(OscMessage theOscMessage) {
   // at the moment i've set it so the 'name-#' is coming from the global `defaultPresetIndex` int which is stored in understory.pde
   // this is also the same functionality for the save function
   
-  if ((addr.startsWith("/load1")) && (theOscMessage.get(0).floatValue() == 1)) {
-    //scene.loadPreset(int(addr.substring(addr.length()-1)));
-    scene.loadPreset(defaultPresetIndex);
+  //if ((addr.startsWith("/load1")) && (theOscMessage.get(0).floatValue() == 1)) {
+  if ((addr.indexOf("/load")) > 0  && (theOscMessage.get(0).floatValue() == 1)) {
+    currentPreset = int(addr.substring(addr.length()-1));
+    scene.loadPreset(int(addr.substring(addr.length()-1)));
+    //scene.loadPreset(defaultPresetIndex);
     println("load");
   }
 
-  if ((addr.startsWith("/save1")) && (theOscMessage.get(0).floatValue() == 1)) {
-    //scene.savePreset(int(addr.substring(addr.length()-1)));
-    scene.savePreset(defaultPresetIndex);
+  //if ((addr.startsWith("/save1")) && (theOscMessage.get(0).floatValue() == 1)) {
+  if ((addr.indexOf("/save")) > 0 && (theOscMessage.get(0).floatValue() == 1)) {
+    currentPreset = int(addr.substring(addr.length()-1));
+    scene.savePreset(int(addr.substring(addr.length()-1)));
+    //scene.savePreset(defaultPresetIndex);
     println("save");
   }
 
@@ -106,7 +135,7 @@ void oscEvent(OscMessage theOscMessage) {
     normY = theOscMessage.get(0).floatValue();
     normX = theOscMessage.get(1).floatValue();
     println("XY received");
-    println("NormX, normY" + normX + " " + normY);
+    println("NormX, normY: " + normX + " " + normY);
   }
 
   //println(theOscMessage.addrPattern());
