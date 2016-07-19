@@ -36,9 +36,11 @@ void rotatingDots_draw(){
   halfWidth = width / 2;
   halfHeight = height / 2;
   
-  translate(halfWidth, halfHeight);
+  pushMatrix();
+  translate(width, height);
   rotate(rotateDeg*TWO_PI/360);
-  translate(-halfWidth, -halfHeight);
+  translate(-width, -height);
+  
   
   // Yellow Circles
   pushMatrix();
@@ -47,8 +49,8 @@ void rotatingDots_draw(){
   noStroke();
   fill(248,255,17);
   
-  for (y = -halfHeight; y < height * 2; y += ellipseSize * 2){
-    for (x = -halfWidth; x < width * 2; x += ellipseSize * 2){
+  for (y = -halfHeight; y < height * 5; y += ellipseSize * 2){
+    for (x = -halfWidth; x < width * 3; x += ellipseSize * 2){
       ellipse(x + animationX, y + animationY, ellipseSize, ellipseSize);
     }
   }
@@ -106,11 +108,12 @@ void rotatingDots_draw(){
   noStroke();
   fill(83,42,161);
   
-  for (y = -halfHeight; y < height * 2; y += ellipseSize * 2){
-    for (x = -halfWidth; x < width * 2; x += ellipseSize * 2){
+  for (y = -halfHeight; y < height * 5; y += ellipseSize * 2){
+    for (x = -halfWidth; x < width * 3; x += ellipseSize * 2){
       ellipse(x, y, ellipseSize, ellipseSize);
     }
   }
+  popMatrix();
   popMatrix();
 
   rotateDeg += rotateDegBy;
