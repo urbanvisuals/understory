@@ -5,7 +5,7 @@ float gap = 100;    // set to fader
 
 void expandingSquares_setup(){
   noStroke();
-  fill(255, 204, 255); 
+  fill(red1, green1, blue1); 
 }
 
 void expandingSquares_draw(){
@@ -14,7 +14,8 @@ void expandingSquares_draw(){
   pushMatrix();
   int numRects = 2400/int(gap);
   
-  fill(255, 204, 255); 
+  //fill(255, 204, 255); 
+  fill(red1, green1, blue1);
   
   //background(0);
   rectMode(CENTER);

@@ -204,7 +204,7 @@ void setup(){
   OSCMap.put("/2/chooser/7/3", rotatingDots); 
   OSCMap.put("/2/chooser/7/4", alternatingSine); 
   OSCMap.put("/2/chooser/7/5", zigzagv2); 
-  OSCMap.put("/2/chooser/7/6", IScene); 
+  OSCMap.put("/2/chooser/7/6", wavvyCircles); 
   OSCMap.put("/2/chooser/7/7", JScene); 
   OSCMap.put("/2/chooser/7/8", KScene); 
   OSCMap.put("/2/chooser/7/9", LScene); 

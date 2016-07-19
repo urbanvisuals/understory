@@ -22,7 +22,7 @@ void alternatingSine_setup(){
   frameRate(30);
   //size(1000, 600);
   //blendMode(BLEND);
-  colorMode(RGB, 255);
+  //colorMode(RGB, 255);
   
   // This makes it end just before the right side of the screen
   //widthScene = width+16;
@@ -33,6 +33,7 @@ void alternatingSine_setup(){
 }
 
 void alternatingSine_draw(){
+  background(0, 0, 0);
   pos = height / (horizontalWaveNumber + 1);
   println("pos: " + pos);
   
@@ -42,7 +43,8 @@ void alternatingSine_draw(){
 
 void calcWave() {
   // Increment theta (try different values for 'angular velocity' here
-  theta += 0.2;
+  //theta += 0.2;
+  theta += map(fader1, 0.0, 255.0, 0.0, 1.0);
 
   // For every x value, calculate a y value with sine function
   float xA = theta;
@@ -60,13 +62,18 @@ void calcWave() {
 
 void renderWave() {
   
+  alphaValue = fader2;
+  
   // A simple way to draw the wave with an ellipse at each location
   noFill();
+  pushMatrix();
+  
   strokeWeight(strokeWeight);
   //translate(-30, -1 * ((height / 2) - pos) );
   translate(-30, -height);
   
   pushMatrix();
+  noFill();
   for (int l = 0; l <= (horizontalWaveNumber + 2); l++){
     println("l: " + l);
     //pushMatrix();
@@ -76,21 +83,24 @@ void renderWave() {
     //translate(0, 150);
     translate(0, pos);
     
-    stroke(223, 0, 71, alphaValue);
+    //stroke(223, 0, 71, alphaValue);
+    stroke(red1, green1, blue1, alphaValue);
     beginShape();
     for (int x = 0; x < yvaluesA.length; x++) {
       curveVertex(x * xspacing, height/2+yvaluesA[x]);
     }
     endShape();
     
-    stroke(46, 175, 213, alphaValue);
+    stroke(red2, green2, blue2, alphaValue);
     beginShape();
     for (int x = 0; x < yvaluesB.length; x++) {
       curveVertex(x * xspacing, height/2+yvaluesB[x]);
     }
     endShape();
   }
-  popMatrix(); 
+  popMatrix();
+  
+  popMatrix();
 }
 
 Scene alternatingSine = new Scene("alternatingSine", "Alternating Sine Waves") {
