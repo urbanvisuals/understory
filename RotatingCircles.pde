@@ -24,7 +24,7 @@ void rotatingDots_setup(){
 }
 
 void rotatingDots_draw(){
-  background(20,248,172);
+  background(fader4, fader5, fader6);
   
   currentMillis = millis();
   
@@ -47,7 +47,7 @@ void rotatingDots_draw(){
   float x = 0.0;
   float y = 0.0;
   noStroke();
-  fill(248,255,17);
+  fill(red1, green1, blue1);
   
   for (y = -halfHeight; y < height * 5; y += ellipseSize * 2){
     for (x = -halfWidth; x < width * 3; x += ellipseSize * 2){
@@ -106,7 +106,7 @@ void rotatingDots_draw(){
   x = 0;
   y = 0;
   noStroke();
-  fill(83,42,161);
+  fill(red2, green2, blue2);
   
   for (y = -halfHeight; y < height * 5; y += ellipseSize * 2){
     for (x = -halfWidth; x < width * 3; x += ellipseSize * 2){
