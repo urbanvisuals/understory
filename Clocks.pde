@@ -62,11 +62,7 @@ int[] ranX = { 10, 200, 2, 20 };
 int[] ranY = { 20, 200, 12, 20, 2 };
 
 void clocks_setup(){
-  
-  println("width", width);
-  //size(600, 600);
-  //background(255);
-  //background(255,255,255);
+ 
   smooth();
 
   //tileWidth = width/float(tileCount);
@@ -83,13 +79,9 @@ void clocks_setup(){
 }
 
 void clocks_draw(){
-  background(255);
-  //background(0, 0, 0);
-  //background(255,255,255);
+  background(red1, green1, blue1);
+  
   smooth();
-
-  println(tileCountX);
-  println(tileCountY);
 
   for (int gridY=0; gridY<tileCountY; gridY++) {
     for (int gridX=0; gridX<tileCountX; gridX++) {
@@ -99,32 +91,14 @@ void clocks_draw(){
 
       // calculate angle between mouse position and actual position of the shape
       //float angle = atan2(mouseY-posY, mouseX-posX) + radians(shapeAngle);
-      
       //float angle = atan2(y(t)-posY, x(t)-posX) + radians(shapeAngle);
       
-      float angle = atan2(y(t)-posY, x(t)-posX);
-      //float angle = atan2(sin(t), sin(t));
+      float mapX = map(normX, 0, 1, 0, width);
+      float mapy = map(normY, 0, 1, height, 0);
       
-      // This was breaking some of the logic and making it not display
-      //if (sizeMode == 0) newShapeSize = shapeSize;
-      //if (sizeMode == 1) newShapeSize = shapeSize*1.5-map(dist(mouseX,mouseY,posX,posY),0,500,5,shapeSize);
-      //if (sizeMode == 2) newShapeSize = map(dist(mouseX,mouseY,posX,posY),0,500,5,shapeSize);
-
-      //if (fillMode == 0) currentShape.enableStyle();
-      //if (fillMode == 1) {
-      //  currentShape.disableStyle();
-      //  fill(shapeColor);      
-      //}
-      //if (fillMode == 2) {
-      //  currentShape.disableStyle();
-      //  float a = map(dist(mouseX,mouseY,posX,posY), 0,maxDist, 255,0);
-      //  fill(shapeColor, a);      
-      //}
-      //if (fillMode == 3) {
-      //  currentShape.disableStyle();
-      //  float a = map(dist(mouseX,mouseY,posX,posY), 0,maxDist, 0,255);
-      //  fill(shapeColor, a);      
-      //}
+      float angle = atan2(mapy-posY, mapX-posX) + radians(shapeAngle);
+      //float angle = atan2(y(t)-posY, x(t)-posX);
+      //float angle = atan2(sin(t), sin(t));
 
       pushMatrix();
       translate(posX, posY);
@@ -132,15 +106,13 @@ void clocks_draw(){
       shapeMode (CENTER);
 
       noStroke();
-      color(0);
-      //fill(255);
+      currentShape.disableStyle();
+      scale(map(fader1, 0, 255, 0, 2), map(fader2, 0, 255, 0, 2));
+      color(red2, green2, blue2);
+      fill(red2, green2, blue2);
       shape(currentShape, 0,0, newShapeSize,newShapeSize);
       popMatrix();
     }
-  }
-  
-  if (frameCount % 500 == 0){
-    randomizePositions();
   }
   
   t++;
