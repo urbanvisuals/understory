@@ -32,6 +32,7 @@ void expandingSquares_draw(){
   size = size + speed;
   if (size > gap*2)size=0;
   popMatrix();
+  rectMode(CORNER);
 }
 
 Scene expandingSquares = new Scene("expandingSquares", "Expanding Squares") {
