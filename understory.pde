@@ -4,6 +4,9 @@ import netP5.*;
 PImage wayHome;
 boolean showWayHome;
 boolean masterPause = false;
+
+//int defaultPresetIndex = 1;
+int currentPreset = 1;
   
 OscP5 oscP5;
 NetAddress myRemoteLocation;
@@ -13,48 +16,36 @@ int myListeningPort = 12005;
 /* the broadcast port is the port the clients should listen for incoming messages from the server*/
 int myBroadcastPort = 12006;
 
-
 import toxi.math.*;
 import toxi.color.*;
 import krister.Ess.*;
 
 import java.util.*;
-
 import megamu.mesh.*;
-
 
 import processing.opengl.*;
 import fisica.*;
 
 PFont font;
 
-
 FWorld world;
 FBox remover;
 FBox catcher;
 
-
-
 import processing.video.*;
 
-
 //char Mode='c';
-
 Scene scene;
 Scene tempScene;
 
 //char TempMode;// = Mode;
 
-
-
 //boolean sketchFullScreen() {
 //  return true;
 //}
 
-
 HashMap<String, Scene> sceneMap = new HashMap<String, Scene>();
 HashMap<String, Scene> OSCMap = new HashMap<String, Scene>();
-
 
 void second_setup() {
   // Reset any relevant state here:
@@ -62,42 +53,52 @@ void second_setup() {
   if (myMovie != null) {
     myMovie.stop();
   }
+  
   if (scene != null) {
-    scene.loadPreset(1);
+    //scene.loadPreset(1);
+    //scene.loadPreset(0);
+    
+    if(autoload == 1.0){
+      //print("AUTOLOAD! ");
+      //println(autoload);
+      scene.loadPreset(currentPreset);
+    } else {
+      scene.loadPreset(1);
+    }
+    
     scene.setup();
   }
 
   else println("Scene is null, not setting up");
 }
 
-
 void draw() {
   while (masterPause);{
 
-  if (scene != null) scene.draw();
-  else println("Scene is null");
-  
-  if(BlackFader > 0) {
-     colorMode(RGB, 100);
-     noStroke();
-     resetShader();
-     hint(DISABLE_DEPTH_TEST);
-     fill(0, 0, 0, 100-BlackFader);
-         
-     rect(0, 0, 2400, 600);
-     hint(ENABLE_DEPTH_TEST);
-     BlackFader -- ;
-   } else if (BlackFader == 0){
+    if (scene != null) scene.draw();
+    else println("Scene is null");
+    
+    if(BlackFader > 0) {
       colorMode(RGB, 100);
       noStroke();
-     scene = tempScene;
-     fill(0, 0, 0);
-     rect(0, 0, 2400, 600);
-     BlackFader -- ;
-     background(0);
-     second_setup();
+      resetShader();
+      hint(DISABLE_DEPTH_TEST);
+      fill(0, 0, 0, 100-BlackFader);
+       
+      rect(0, 0, 2400, 600);
+      hint(ENABLE_DEPTH_TEST);
+      BlackFader -- ;
+    } else if (BlackFader == 0){
+      colorMode(RGB, 100);
+      noStroke();
+      scene = tempScene;
+      fill(0, 0, 0);
+      rect(0, 0, 2400, 600);
+      BlackFader -- ;
+      background(0);
+      second_setup();
      
-   } else if (BlackFader > -100){
+    } else if (BlackFader > -100){
       colorMode(RGB, 100);
       noStroke();
       resetShader();
@@ -105,38 +106,35 @@ void draw() {
       fill(0, 0, 0, 100+BlackFader);
       rect(0, 0, 2400, 600);
       hint(ENABLE_DEPTH_TEST);
-
-       BlackFader--;
-   }
-   
-   
- 
-  hint(DISABLE_DEPTH_TEST);
-  resetShader();
-  noStroke();
-
-  float off = 230 - maskWipe/255.0*230;
-
-  fill(0);
-  beginShape();
-  vertex(700, height);
-  vertex(800, height-230);
-  vertex(900, height);
-  endShape();
-  fill(0,0,0,255-maskFader);
-
-  rect(0, height-off, width, height);
+      
+      BlackFader--;
+    }
+    
+    hint(DISABLE_DEPTH_TEST);
+    resetShader();
+    noStroke();
   
-  if (showWayHome){
-   image(wayHome, 20, 100, 2360, 250); 
-   image(wayHome, 2400, 100); 
-  }
+    float off = 230 - maskWipe/255.0*230;
+  
+    fill(0);
+    beginShape();
+    vertex(700, height);
+    vertex(800, height-230);
+    vertex(900, height);
+    endShape();
+    fill(0,0,0,255-maskFader);
+  
+    rect(0, height-off, width, height);
+    
+    if (showWayHome){
+      image(wayHome, 20, 100, 2360, 250); 
+      image(wayHome, 2400, 100); 
+    }
     
   }
   
-  
   hint(ENABLE_DEPTH_TEST);
-
+  
 }
 
 void settings() {
@@ -145,17 +143,16 @@ void settings() {
 
 
 void setup(){
-   size(2400, 600);
+  size(2400, 600, OPENGL);
+  //size(1600, 900, OPENGL);
   // set location - needs to be in setup()
   // set x parameter depending on the resolution of your 1st screen
   //frame.setLocation(1660,50);
 
-   oscP5 = new OscP5(this,myListeningPort);
-   //myRemoteLocation = new NetAddress("169.254.178.242",12006);
+  oscP5 = new OscP5(this, myListeningPort);
+  //myRemoteLocation = new NetAddress("169.254.178.242",12006);
    
   font = loadFont("UniversLT.vlw");
-
-  
   wayHome = loadImage("logo-color.png");
   
   sceneMap.put("0", lineMaker);
@@ -174,6 +171,8 @@ void setup(){
   //sceneMap.put("n", treePattern6);
   //sceneMap.put("m", treePattern7);
   sceneMap.put(",", treePattern8);
+  
+  sceneMap.put("y", clocks);
   
   sceneMap.put("a", AScene);
   sceneMap.put("d", DScene);
@@ -202,8 +201,20 @@ void setup(){
   
   sceneMap.put("1", colorMoireShader);
 
+  // Sets the default scene to the junk rotating boxes
   scene = junk;
   
+  OSCMap.put("/2/chooser/7/1", clocks); 
+  OSCMap.put("/2/chooser/7/2", expandingSquares); 
+  OSCMap.put("/2/chooser/7/3", rotatingDots); 
+  OSCMap.put("/2/chooser/7/4", alternatingSine); 
+  OSCMap.put("/2/chooser/7/5", zigzagv2); 
+  OSCMap.put("/2/chooser/7/6", wavvyCircles); 
+  OSCMap.put("/2/chooser/7/7", particleAttracts); 
+  OSCMap.put("/2/chooser/7/8", rotatingSquares); 
+  OSCMap.put("/2/chooser/7/9", LScene); 
+  OSCMap.put("/2/chooser/7/10",FScene); 
+
   OSCMap.put("/2/chooser/6/1", image2); 
   OSCMap.put("/2/chooser/6/2", DScene); 
   OSCMap.put("/2/chooser/6/3", EScene); 
@@ -237,7 +248,6 @@ void setup(){
   OSCMap.put("/2/chooser/4/9", junk); 
   OSCMap.put("/2/chooser/4/10", conway);
  
-
   OSCMap.put("/2/chooser/3/1", complexShader); 
   OSCMap.put("/2/chooser/3/2", complex2Shader); 
   OSCMap.put("/2/chooser/3/3", twistyDotsShader); 
@@ -270,10 +280,7 @@ void setup(){
   OSCMap.put("/2/chooser/1/8", movie8); 
   OSCMap.put("/2/chooser/1/9", movie9); 
   OSCMap.put("/2/chooser/1/10", movie10); 
-
-
- 
-
+  
   smooth();
   fill(0);
   strokeWeight(1);
@@ -284,15 +291,12 @@ void setup(){
   
 }
 
-
 void contactStarted(FContact contact) {
   
   if (scene == RScene ) {
 
     // Draw in green an ellipse where the contact took place
     //     FBody b1;
-
-
 
     //FBody1 = contact.getBody1
 
@@ -306,19 +310,14 @@ void contactStarted(FContact contact) {
       contact.getBody2() instanceof FCircle && ((FCircle)contact.getBody2()).getSize()>6) {
       fill(100, 255, 100);
       ellipse(contact.getX(), contact.getY(), 50, 50);
-
-
-    
     }
+    
   }
-
 
   if (scene == UScene ) {
 
     // Draw in green an ellipse where the contact took place
     //     FBody b1;
-
-
 
     //FBody1 = contact.getBody1
 
@@ -331,8 +330,6 @@ void contactStarted(FContact contact) {
     if (contact.getBody1() instanceof FCircle && ((FCircle)contact.getBody1()).getSize()>6 || 
       contact.getBody2() instanceof FCircle && ((FCircle)contact.getBody2()).getSize()>6) {
       if (((FCircle)contact.getBody2()).getSize()>11 ||  ((FCircle)contact.getBody2()).getSize()>11) {
-
-
         fill(0, 255, 255);
       }
       else {
