@@ -137,9 +137,9 @@ void draw() {
   
 }
 
-void settings() {
-  fullScreen(P3D, 2);
-}
+//void settings() {
+//  fullScreen(P3D, 2);
+//}
 
 
 void setup(){
