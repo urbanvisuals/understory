@@ -57,4 +57,3 @@ Scene image2 = new Scene("image2", "image2") {
     image2_draw();
   }
 };
-

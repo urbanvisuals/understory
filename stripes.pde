@@ -65,5 +65,3 @@ Scene stripes = new Scene("stripes", "Stripes") {
   void setup() {stripes_setup();}
   void draw() {stripes_draw();}
 };
-
-

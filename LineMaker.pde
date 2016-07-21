@@ -87,4 +87,3 @@ void mousePressed() {
     saveStrings("lines.txt", Positions);
   }
 }
-

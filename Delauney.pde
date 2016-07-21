@@ -156,4 +156,3 @@ Scene delauney = new Scene("delaunay", "Delaunay") {
     Delauney_draw();
   }
 };
-

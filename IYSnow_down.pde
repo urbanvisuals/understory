@@ -190,4 +190,3 @@ Scene cubesDown = new Scene("cubesdown", "Falling cubes") {
     cubesDownDraw();
   }
 };
-

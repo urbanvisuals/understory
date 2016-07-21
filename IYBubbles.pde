@@ -426,5 +426,3 @@ Scene donuts2 = new Scene("donuts2", "Pulsing Donuts") {
     donuts2_draw();
   }
 };
-
-
