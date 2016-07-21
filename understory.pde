@@ -139,8 +139,13 @@ void draw() {
 
 }
 
+void settings() {
+  fullScreen(P3D, 2);
+}
+
+
 void setup(){
-   size(2400, 600, OPENGL);
+   size(2400, 600);
   // set location - needs to be in setup()
   // set x parameter depending on the resolution of your 1st screen
   //frame.setLocation(1660,50);
