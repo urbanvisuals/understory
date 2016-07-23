@@ -13,7 +13,7 @@ float hPos = 0.0;
 
 ArrayList<HLines> hlines = new ArrayList<HLines>();
 
-float spd = 0;
+float spd = 0, spd2 = 0;
 
 void gridAnimate_setup(){
   //colorMode(RGB, 255);
@@ -48,6 +48,7 @@ void gridAnimate_setup(){
 void gridAnimate_draw(){
   
   spd = map(fader1, 0, 255, 0, 5);
+  spd2 = map(fader2, 0, 255, 0, 5);
   
   // controlled by the faders
   background(red1, green1, blue1);
@@ -74,7 +75,7 @@ void gridAnimate_draw(){
   
   for (int i = hlines.size()-1; i >= 0; i--) { 
     HLines horizontalLine = hlines.get(i);
-    horizontalLine.update(i, red2, green2, blue2, f4);
+    horizontalLine.update(i, red2, green2, blue2, spd, f4);
   } 
 }
 
@@ -100,7 +101,6 @@ class Lines {
     pushMatrix();
     // Change to fader#
     sw = f4;
-    
     speed = spd;
     
     // todo can be rgb color 
@@ -142,10 +142,12 @@ class HLines {
   }
   
   //void update(int i, int r, int g, int b, int zigSizeUpdate) {
-  void update(int i, int r, int g, int b, float f4) {
+  void update(int i, int r, int g, int b, float spd, float f4) {
     pushMatrix();
     // Change to fader#
     sw = f4;
+    
+    speed = spd;
     
     // todo can be rgb color 
      color strokeColor = color(r, g, b);
