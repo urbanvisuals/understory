@@ -737,7 +737,7 @@ void k_draw() {
       for ( x = -200; x<200; x+=10) {
         pushMatrix();
         translate(x, y, 0);
-
+        fill(red1,green1,blue1);
         rect(0, 0, fader1/5, fader1/5); 
         popMatrix();
       }
