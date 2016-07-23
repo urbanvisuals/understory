@@ -1,4 +1,4 @@
-int oscX, oscY, fader1=10, fader2=10, fader3=10, fader4=10, fader5=10, fader6=10, red1=0, green1=0, blue1=0, red2=0, green2=0, blue2=0;
+int oscX, oscY, fader1=10, fader2=10, fader3=10, fader4=10, fader5=10, fader6=10, red1=100, green1=100, blue1=100, red2=100, green2=100, blue2=100;
 int maskFader = 255, maskWipe = 255;
 float normX = 0.5;
 float normY = 0.5;

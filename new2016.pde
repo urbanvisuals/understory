@@ -39,3 +39,63 @@ Scene starsScene = new Scene("Stars", "Stars") {
     stars_draw();
   }
 };
+
+////
+//// dotsy
+////
+
+float af;
+float sf;
+float bf = 0.0;
+float tf = 0.0;
+
+void dotsy_setup() {
+  noStroke();
+  ellipseMode(CENTER);
+  colorMode(RGB);
+}
+
+void dotsy_draw() {
+
+  fader2=200;
+  fader1=100;
+  fader3=100;
+  
+ 
+  
+  background(0);
+
+  af = af + fader1/10000.;
+  bf = bf + 0.04;
+  sf = cos(af)*50;
+  tf = cos(bf)*PI;
+
+  strokeWeight(fader4/10);
+  stroke(red2,green2,blue2);
+
+  for (int i =0; i < 2400; i = i + fader3) {
+    for (int j =0; j < 600; j = j + fader3) {
+
+      //pushMatrix();  
+      //rotate((tf));
+      //translate(i, j);
+      //scale(sf); 
+      fill(red1,green1,blue1);
+      ellipse(sf + i, j, fader2, fader2); 
+      ellipse(-sf + i, j, fader2, fader2); 
+      ellipse(i, j -sf, fader2, fader2); 
+      ellipse(i, j +sf, fader2, fader2); 
+
+      //popMatrix();
+    }
+  }
+}
+
+Scene dotsy_Scene = new Scene("dotsy", "dotsy") {
+  void setup() { 
+    dotsy_setup();
+  }
+  void draw() { 
+    dotsy_draw();
+  }
+};
