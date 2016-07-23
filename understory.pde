@@ -118,9 +118,9 @@ void draw() {
   
     fill(0);
     beginShape();
-    vertex(700, height);
-    vertex(800, height-230);
-    vertex(900, height);
+    vertex(1550, height);
+    vertex(1600, height-230);
+    vertex(1700, height);
     endShape();
     fill(0,0,0,255-maskFader);
   
@@ -136,6 +136,11 @@ void draw() {
   hint(ENABLE_DEPTH_TEST);
   
 }
+
+void settings() {
+  fullScreen(P3D, 1);
+}
+
 
 void setup(){
   size(2400, 600, OPENGL);
@@ -179,7 +184,7 @@ void setup(){
   sceneMap.put("j", JScene);
   sceneMap.put("k", KScene);
   sceneMap.put("l", LScene);
-  //sceneMap.put("o", OScene);
+  sceneMap.put("o", OScene);
   sceneMap.put("p", PScene);
   sceneMap.put("q", QScene);
   sceneMap.put("r", RScene);
@@ -199,6 +204,17 @@ void setup(){
   // Sets the default scene to the junk rotating boxes
   scene = junk;
   
+  OSCMap.put("/2/chooser/8/1", starsScene); 
+  OSCMap.put("/2/chooser/8/2", expandingSquares); 
+  OSCMap.put("/2/chooser/8/3", expandingEllipses); 
+  OSCMap.put("/2/chooser/8/4", alternatingSine); 
+  OSCMap.put("/2/chooser/8/5", zigzagv2); 
+  OSCMap.put("/2/chooser/8/6", wavvyCircles); 
+  OSCMap.put("/2/chooser/8/7", particleAttracts); 
+  OSCMap.put("/2/chooser/8/8", rotatingSquares); 
+  OSCMap.put("/2/chooser/8/9", LScene); 
+  OSCMap.put("/2/chooser/8/10",FScene); 
+
   OSCMap.put("/2/chooser/7/1", clocks); 
   OSCMap.put("/2/chooser/7/2", expandingSquares); 
   OSCMap.put("/2/chooser/7/3", rotatingDots); 
@@ -226,23 +242,23 @@ void setup(){
   OSCMap.put("/2/chooser/5/3", QScene); 
   OSCMap.put("/2/chooser/5/4", RScene); 
   OSCMap.put("/2/chooser/5/5", TScene); 
-  OSCMap.put("/2/chooser/5/6", UScene); 
-  OSCMap.put("/2/chooser/5/7", WScene); 
-  OSCMap.put("/2/chooser/5/8", YScene); 
+  OSCMap.put("/2/chooser/5/6", UScene);   //Fireflies
+  OSCMap.put("/2/chooser/5/7", WScene);   //balls fly from left to right
+  OSCMap.put("/2/chooser/5/8", YScene);   //vines
   OSCMap.put("/2/chooser/5/9", image1); 
   OSCMap.put("/2/chooser/5/10",newLines); 
 
-  OSCMap.put("/2/chooser/4/1", treePattern1); 
-  OSCMap.put("/2/chooser/4/2", treePattern2); 
-  OSCMap.put("/2/chooser/4/3", treePattern3); 
-  OSCMap.put("/2/chooser/4/4", treePattern4); 
-  OSCMap.put("/2/chooser/4/5", treePattern5); 
-  OSCMap.put("/2/chooser/4/6", treePattern6); 
-  OSCMap.put("/2/chooser/4/7", treePattern7); 
-  OSCMap.put("/2/chooser/4/8", treePattern8); 
-  OSCMap.put("/2/chooser/4/9", junk); 
-  OSCMap.put("/2/chooser/4/10", conway);
- 
+  OSCMap.put("/2/chooser/4/1", cubes); 
+  OSCMap.put("/2/chooser/4/2", diags); 
+  OSCMap.put("/2/chooser/4/3", snowDown); 
+  OSCMap.put("/2/chooser/4/4", bubbles); 
+  OSCMap.put("/2/chooser/4/5", lines); 
+  OSCMap.put("/2/chooser/4/6", spinners); 
+  OSCMap.put("/2/chooser/4/7", vorenoi); 
+  OSCMap.put("/2/chooser/4/8", conway); 
+  OSCMap.put("/2/chooser/4/9", stripes); 
+  OSCMap.put("/2/chooser/4/10", delauney); 
+
   OSCMap.put("/2/chooser/3/1", complexShader); 
   OSCMap.put("/2/chooser/3/2", complex2Shader); 
   OSCMap.put("/2/chooser/3/3", twistyDotsShader); 
@@ -253,28 +269,28 @@ void setup(){
   OSCMap.put("/2/chooser/3/8", XVoronoi); 
   OSCMap.put("/2/chooser/3/9", donuts); 
   OSCMap.put("/2/chooser/3/10", donuts2); 
-
-  OSCMap.put("/2/chooser/2/1", cubes); 
-  OSCMap.put("/2/chooser/2/2", diags); 
-  OSCMap.put("/2/chooser/2/3", snowDown); 
-  OSCMap.put("/2/chooser/2/4", bubbles); 
-  OSCMap.put("/2/chooser/2/5", lines); 
-  OSCMap.put("/2/chooser/2/6", spinners); 
-  OSCMap.put("/2/chooser/2/7", vorenoi); 
-  OSCMap.put("/2/chooser/2/8", conway); 
-  OSCMap.put("/2/chooser/2/9", stripes); 
-  OSCMap.put("/2/chooser/2/10", delauney); 
   
-  OSCMap.put("/2/chooser/1/1", movie1); 
-  OSCMap.put("/2/chooser/1/2", movie2); 
-  OSCMap.put("/2/chooser/1/3", movie3); 
-  OSCMap.put("/2/chooser/1/4", movie4); 
-  OSCMap.put("/2/chooser/1/5", movie5); 
-  OSCMap.put("/2/chooser/1/6", movie6); 
-  OSCMap.put("/2/chooser/1/7", movie7); 
-  OSCMap.put("/2/chooser/1/8", movie8); 
-  OSCMap.put("/2/chooser/1/9", movie9); 
-  OSCMap.put("/2/chooser/1/10", movie10); 
+  OSCMap.put("/2/chooser/2/1", movie1); 
+  OSCMap.put("/2/chooser/2/2", movie2); 
+  OSCMap.put("/2/chooser/2/3", movie3); 
+  OSCMap.put("/2/chooser/2/4", movie4); 
+  OSCMap.put("/2/chooser/2/5", movie5); 
+  OSCMap.put("/2/chooser/2/6", movie6); 
+  OSCMap.put("/2/chooser/2/7", movie7); 
+  OSCMap.put("/2/chooser/2/8", movie8); 
+  OSCMap.put("/2/chooser/2/9", movie9); 
+  OSCMap.put("/2/chooser/2/10", movie10); 
+
+  OSCMap.put("/2/chooser/1/1", movie11); 
+  OSCMap.put("/2/chooser/1/2", movie12); 
+  OSCMap.put("/2/chooser/1/3", movie13); 
+  OSCMap.put("/2/chooser/1/4", movie14); 
+  OSCMap.put("/2/chooser/1/5", movie15); 
+  OSCMap.put("/2/chooser/1/6", movie16); 
+  OSCMap.put("/2/chooser/1/7", movie17); 
+  OSCMap.put("/2/chooser/1/8", movie18); 
+  OSCMap.put("/2/chooser/1/9", movie19); 
+  OSCMap.put("/2/chooser/1/10", movie20); 
   
   smooth();
   fill(0);

@@ -14,23 +14,23 @@ void keyPressed() {
   if (key == 's') {
     scene.savePreset(currentPreset);
   }
-  if (key == '=') {
+  else if (key == '=') {
     scene.loadPreset(currentPreset);
   }
-  if (key == ' ') {
+  else if (key == ' ') {
     showWayHome = !showWayHome;
   }
-  if (key == '+') {
+  else if (key == '+') {
     masterPause = !masterPause;
   }
-  if (key == '-') {
+  else if (key == '-') {
     try {
       world.clear();
     } 
     catch (Exception e) {
     }
   }
-  tempScene = sceneMap.get(Character.toString(key));
+  else tempScene = sceneMap.get(Character.toString(key));
   if (tempScene == null) {
     println("No scene found for that character: " + key);
     return;
