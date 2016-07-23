@@ -88,7 +88,11 @@ void draw() {
       rect(0, 0, 2400, 600);
       hint(ENABLE_DEPTH_TEST);
       BlackFader -- ;
-    } else if (BlackFader == 0){
+      println(BlackFader);
+
+    
+    } 
+    else if (BlackFader == 0){
       colorMode(RGB, 100);
       noStroke();
       scene = tempScene;
@@ -97,8 +101,11 @@ void draw() {
       BlackFader -- ;
       background(0);
       second_setup();
+      print(BlackFader);
+      println("   second setup");
      
-    } else if (BlackFader > -100){
+    }
+    else if (BlackFader > -100){
       colorMode(RGB, 100);
       noStroke();
       resetShader();
@@ -108,6 +115,7 @@ void draw() {
       hint(ENABLE_DEPTH_TEST);
       
       BlackFader--;
+      println(BlackFader);
     }
     
     hint(DISABLE_DEPTH_TEST);
@@ -132,14 +140,13 @@ void draw() {
     }
     
   }
-  
-  hint(ENABLE_DEPTH_TEST);
+ hint(ENABLE_DEPTH_TEST);
   
 }
 
-void settings() {
-  fullScreen(P3D, 1);
-}
+//void settings() {
+//  fullScreen(P3D, 1);
+//}
 
 
 void setup(){
@@ -194,8 +201,8 @@ void setup(){
 
   sceneMap.put("m", movie1);
   sceneMap.put("n", movie2);
-  sceneMap.put("o", movie3);
-  //sceneMap.put("p", movie4);
+  sceneMap.put("o", dotsy_Scene);
+  sceneMap.put("p", movie4);
   sceneMap.put("q", movie5);
   sceneMap.put("r", movie6);
   

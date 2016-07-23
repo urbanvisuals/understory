@@ -702,9 +702,9 @@ void k_draw() {
   int x=0, y=0;
 
 
-  zra+=0.001*(-128+fader2)/50.0f;
-  yra+=0.001*(-128+fader3)/50.0f;
-  xra+=0.001*(-128+fader4)/50.0f;
+  zra+=0.001*(-128+fader4)/50.0f;
+  yra+=0.001*(-128+fader5)/50.0f;
+  xra+=0.001*(-128+fader6)/50.0f;
 
 
 
@@ -729,8 +729,9 @@ void k_draw() {
 
 
 
-    fill(255, 255, 255);
-    noStroke();
+    //fill(red1, green1, blue1);
+    strokeWeight(fader2/10);
+    stroke(red2,green2,blue2);
 
 
     for ( y = -200; y< 200; y+=10)
