@@ -99,9 +99,12 @@ void rotatingSquares_draw(){
     float r = red2;
     float g = green2;
     float b = blue2;
+    float sw = map(fader3, 0, 255, 1, 10); 
     
     pushMatrix();
-    fill(r, g, b);
+    noFill();
+    stroke(r, g, b);
+    strokeWeight(sw);
     rotateY(a + offsetSquares*i);
     rotateX(a/2 + offsetSquares*i);
     box(200);

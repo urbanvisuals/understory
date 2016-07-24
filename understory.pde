@@ -179,7 +179,7 @@ void setup(){
   //sceneMap.put("m", treePattern7);
   sceneMap.put(",", treePattern8);
   
-  sceneMap.put("y", clocks);
+  sceneMap.put("y", gridAnimate);
   
   sceneMap.put("a", AScene);
   sceneMap.put("d", DScene);
@@ -230,8 +230,8 @@ void setup(){
   OSCMap.put("/2/chooser/7/6", wavvyCircles); 
   OSCMap.put("/2/chooser/7/7", particleAttracts); 
   OSCMap.put("/2/chooser/7/8", rotatingSquares); 
-  OSCMap.put("/2/chooser/7/9", LScene); 
-  OSCMap.put("/2/chooser/7/10",FScene); 
+  OSCMap.put("/2/chooser/7/9", rectangleMoveUp); 
+  OSCMap.put("/2/chooser/7/10",gridAnimate); 
 
   OSCMap.put("/2/chooser/6/1", image2); 
   OSCMap.put("/2/chooser/6/2", DScene); 
